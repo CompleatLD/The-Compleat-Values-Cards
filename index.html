@@ -1,199 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compleat Values Cards</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compleat Values Cards</title>
 
-  <!-- GOOGLE FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Geologica:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --teal: #43b7ad;
-      --pink: #e43aa8;
-      --white: #ffffff;
-    }
+<style>
+:root {
+  --teal: #32B7AC;
+  --pink: #D72BA6;
+  --white: #ffffff;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: var(--teal);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+body {
+  margin: 0;
+  font-family: 'Geologica', sans-serif;
+  background: var(--teal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    .app {
-      text-align: center;
-    }
+.app {
+  text-align: center;
+}
 
-    .deck {
-      perspective: 1400px;
-      margin-bottom: 32px;
-    }
+.deck {
+  perspective: 1400px;
+  margin-bottom: 28px;
+}
 
-    .card {
-      width: 400px;
-      height: 600px;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.8s ease;
-      cursor: pointer;
+.card {
+  width: 420px;
+  height: 700px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
 
-      /* START ON BACK */
-      transform: rotateY(180deg);
-    }
+.card.flipped {
+  transform: rotateY(0deg);
+}
 
-    .card.flipped {
-      transform: rotateY(0deg);
-    }
+.card.shuffle {
+  animation: shuffle 0.4s ease;
+}
 
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-      box-sizing: border-box;
-    }
+@keyframes shuffle {
+  0% { transform: translateX(0) rotateY(180deg); }
+  25% { transform: translateX(-8px) rotateY(180deg); }
+  50% { transform: translateX(8px) rotateY(180deg); }
+  100% { transform: translateX(0) rotateY(180deg); }
+}
 
-    /* FRONT */
-    .card-front {
-      background: var(--white);
-      padding: 56px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-    #value {
-      font-size: 72px;
-      font-weight: 800;
-      color: var(--teal);
-      margin: 32px 0 20px;
-      text-align: center;
-    }
+/* FRONT */
+.card-front {
+  background: #ffffff;
+  padding-top: 70px;
+}
 
-    #title {
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--pink);
-      margin-bottom: 48px;
-      text-align: center;
-    }
+#value {
+  font-family: 'Anton', sans-serif;
+  font-size: 64px;
+  color: var(--teal);
+  margin-bottom: 80px;
+}
 
-    #prompt {
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 1.5;
-      color: var(--teal);
-      text-align: center;
-      max-width: 320px;
-    }
+#title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 40px;
+}
 
-    /* BACK */
-    .card-back {
-      background: var(--teal);
-      transform: rotateY(180deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+#prompt {
+  font-size: 26px;
+  line-height: 1.45;
+  color: var(--teal);
+  max-width: 75%;
+}
 
-    .card-back img {
-      width: 88%;
-      height: auto;
-    }
+/* BACK */
+.card-back {
+  background: var(--teal);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* BUTTON */
-    button {
-      background: var(--pink);
-      border: none;
-      color: white;
-      padding: 18px 40px;
-      font-size: 20px;
-      font-weight: 700;
-      border-radius: 50px;
-      cursor: pointer;
-    }
+.card-back img {
+  width: 88%;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
-  </style>
+/* BUTTON */
+button {
+  background: var(--pink);
+  border: none;
+  color: white;
+  padding: 16px 36px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* RESHUFFLE OVERLAY */
+.reshuffle {
+  position: fixed;
+  inset: 0;
+  background: rgba(50,183,172,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.reshuffle.show {
+  opacity: 1;
+}
+</style>
 </head>
 
 <body>
-  <div class="app">
-    <div class="deck">
-      <div class="card" id="card">
-        <div class="card-face card-front">
-          <div id="value">Quality</div>
-          <div id="title">Quality Hero</div>
-          <div id="prompt">
-            Give a shout-out to someone who consistently delivers high-quality work.
-          </div>
-        </div>
 
-        <div class="card-face card-back">
-          <img src="./CardBack.PNG" alt="Card Back">
-        </div>
+<div class="reshuffle" id="reshuffleMsg">Deck reshuffled</div>
+
+<div class="app">
+  <div class="deck">
+    <div class="card" id="card">
+      <div class="card-face card-front">
+        <div id="value">Quality</div>
+        <div id="title">Quality Hero</div>
+        <div id="prompt">Give a shout-out to someone who consistently delivers high-quality work.</div>
+      </div>
+
+      <div class="card-face card-back">
+        <img src="./CardBack.PNG" alt="Card Back">
       </div>
     </div>
-
-    <button id="drawBtn">Draw Card</button>
   </div>
 
-  <script>
-    const card = document.getElementById('card');
-    const drawBtn = document.getElementById('drawBtn');
-    const valueEl = document.getElementById('value');
-    const titleEl = document.getElementById('title');
-    const promptEl = document.getElementById('prompt');
+  <button id="drawBtn">Draw Card</button>
+</div>
 
-    const fullDeck = [
-      // QUALITY
-      { value: 'Quality', title: 'Quality Hero', text: 'Give a shout-out to someone who consistently delivers high-quality work.' },
-      { value: 'Quality', title: 'Quality Check-in', text: 'What does quality mean in your role?' },
-      { value: 'Quality', title: 'Gold Standard', text: 'Define three non-negotiables of quality in your work.' },
+<script>
+const card = document.getElementById('card');
+const drawBtn = document.getElementById('drawBtn');
+const reshuffleMsg = document.getElementById('reshuffleMsg');
+const valueEl = document.getElementById('value');
+const titleEl = document.getElementById('title');
+const promptEl = document.getElementById('prompt');
 
-      // INTEGRITY
-      { value: 'Integrity', title: 'True North', text: 'Share a time you chose to do the right thing when it was hard.' },
-      { value: 'Integrity', title: 'Speak Up', text: 'When did you last give honest feedback despite discomfort?' },
+/* FULL 66 CARD DECK */
+const fullDeck = [
+  // QUALITY
+  { value:'Quality', title:'Quality Hero', text:'Give a shout-out to someone who consistently delivers high-quality work.' },
+  { value:'Quality', title:'Quality Check-in', text:'What does quality mean in your role?' },
+  { value:'Quality', title:'Recent Win', text:'Think of one action you took recently that led to higher quality output.' },
+  { value:'Quality', title:'Breaking It Down', text:'If you broke quality into three words, what would they be?' },
+  { value:'Quality', title:'Gold Standard', text:'Define three non-negotiables of quality in your work.' },
+  { value:'Quality', title:'When it Mattered Most', text:'Recall a project where quality made a big difference.' },
+  { value:'Quality', title:'Pixel Perfect', text:'Share a time attention to detail made a difference.' },
+  { value:'Quality', title:'Quality Radar', text:'Where could quality slip in a current project?' },
+  { value:'Quality', title:'Quality Habits', text:'What habit helps you maintain quality?' },
+  { value:'Quality', title:'Pride and Passion', text:'How do you show pride through your work?' },
+  { value:'Quality', title:'Bug Hunt', text:'Find a small error this week and fix or flag it.' },
 
-      // PACE
-      { value: 'Pace', title: 'Momentum Maker', text: 'What is slowing you or your team down?' },
-      { value: 'Pace', title: 'Quick Win', text: 'What task could you finish today?' },
+  // INTEGRITY
+  { value:'Integrity', title:'Trust Bank', text:'Build trust with a colleague today.' },
+  { value:'Integrity', title:'Hold the Mirror', text:'Reflect on a recent decision.' },
+  { value:'Integrity', title:'Rules or Results', text:'What would you do if rules were bent?' },
+  { value:'Integrity', title:'True North Moment', text:'Share a time you chose the right thing.' },
+  { value:'Integrity', title:'Moral Compass', text:'What integrity rule do you never break?' },
+  { value:'Integrity', title:'Code of Honour', text:'How can your team live this value?' },
+  { value:'Integrity', title:'Speak Up', text:'When did you last give honest feedback?' },
+  { value:'Integrity', title:'Judgement Call', text:'Where do you draw the ethical line?' },
+  { value:'Integrity', title:'Mirror Message', text:'What would future-you say about integrity?' },
+  { value:'Integrity', title:'Lead with Values', text:'What guides you when answers are unclear?' },
+  { value:'Integrity', title:'Diverse Voices', text:'How did another perspective help?' },
 
-      // CUSTOMER FIRST
-      { value: 'Customer-first', title: 'Customer Lens', text: 'What would change if a customer helped decide?' },
+  // PACE
+  { value:'Pace', title:'Momentum Maker', text:'What is slowing you down?' },
+  { value:'Pace', title:'Work Smarter', text:'Where can efficiency improve?' },
+  { value:'Pace', title:'Energy Boost', text:'What boosts team momentum?' },
+  { value:'Pace', title:'Flow Finder', text:'What helps you focus?' },
+  { value:'Pace', title:'Time Ninja', text:'Your best speed hack?' },
+  { value:'Pace', title:'Quick Win', text:'What can you finish today?' },
+  { value:'Pace', title:'Batch It', text:'What task can be streamlined?' },
+  { value:'Pace', title:'Top 3', text:'Which three tasks matter most?' },
+  { value:'Pace', title:'Time Warp', text:'What makes time fly?' },
+  { value:'Pace', title:'Energy Management', text:'How do you conserve energy?' },
+  { value:'Pace', title:'Knowledge in Motion', text:'How did sharing help speed?' },
 
-      // COURAGE
-      { value: 'Courage', title: 'Brave Move', text: 'Share a bold decision that helped the business.' },
+  // CUSTOMER-FIRST
+  { value:'Customer-first', title:'Customer Lens', text:'What if the customer decided?' },
+  { value:'Customer-first', title:'Walk in Their Shoes', text:'What frustrates your customer?' },
+  { value:'Customer-first', title:'Customer Voice', text:'What insight changed your thinking?' },
+  { value:'Customer-first', title:'Extra Mile', text:'How can we go further?' },
+  { value:'Customer-first', title:'Consistency Check', text:'Is service consistent?' },
+  { value:'Customer-first', title:'Invisible Impact', text:'What do you do unseen?' },
+  { value:'Customer-first', title:'Action Feedback', text:'How can feedback be actioned?' },
+  { value:'Customer-first', title:'Service Mindset', text:'Who relies on you most?' },
+  { value:'Customer-first', title:'Feedback Time', text:'How can feedback improve?' },
+  { value:'Customer-first', title:'Deliver with Empathy', text:'Task or opportunity?' },
+  { value:'Customer-first', title:'Stretch Goals', text:'When did ambition help?' },
 
-      // ONE COMPLEAT
-      { value: 'One Compleat', title: 'One Team', text: 'How can you better support someone outside your team?' }
-    ];
+  // COURAGE
+  { value:'Courage', title:'Brave Move', text:'Share a bold decision.' },
+  { value:'Courage', title:'Dare to Try', text:'Challenge the status quo.' },
+  { value:'Courage', title:'Bold Move', text:'Speak up or stay silent?' },
+  { value:'Courage', title:'Hearing Voices', text:'How help quieter voices?' },
+  { value:'Courage', title:'Growth Zone', text:'What scares you?' },
+  { value:'Courage', title:'Small Bravery', text:'A small brave act.' },
+  { value:'Courage', title:'First to Speak', text:'When did you lead?' },
+  { value:'Courage', title:'Lead the Way', text:'Who inspired courage?' },
+  { value:'Courage', title:'Courage in Clarity', text:'Set boundaries clearly?' },
+  { value:'Courage', title:'Add Value', text:'Idea you held back?' },
+  { value:'Courage', title:'Rewrite the Ending', text:'What would you change?' },
 
-    function drawCard() {
-      const next = fullDeck[Math.floor(Math.random() * fullDeck.length)];
+  // ONE COMPLEAT
+  { value:'One Compleat', title:'One Team', text:'Support outside your team.' },
+  { value:'One Compleat', title:'Culture Builder', text:'Build unity how?' },
+  { value:'One Compleat', title:'Team Spirit', text:'What connects you?' },
+  { value:'One Compleat', title:'Acquisition Benefits', text:'Benefits of scale?' },
+  { value:'One Compleat', title:'Ripple Effect', text:'Shared success?' },
+  { value:'One Compleat', title:'Better Together', text:'Collaboration win?' },
+  { value:'One Compleat', title:'Building Bridges', text:'Who to learn from?' },
+  { value:'One Compleat', title:'Skill Swap', text:'Skill to learn?' },
+  { value:'One Compleat', title:'Lend a Hand', text:'Who needs help?' },
+  { value:'One Compleat', title:'Breaking Silos', text:'Cross-team win?' },
+  { value:'One Compleat', title:'Fresh Perspective', text:'New view helped?' }
+];
 
-      valueEl.textContent = next.value;
-      titleEl.textContent = next.title;
-      promptEl.textContent = next.text;
+let deck = [...fullDeck];
 
-      card.classList.add('flipped');
-    }
+function showReshuffle() {
+  reshuffleMsg.classList.add('show');
+  setTimeout(() => reshuffleMsg.classList.remove('show'), 900);
+}
 
-    drawBtn.addEventListener('click', drawCard);
+function drawCard() {
+  if (deck.length === 0) {
+    deck = [...fullDeck];
+    showReshuffle();
+  }
 
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
-    });
-  </script>
+  card.classList.remove('flipped');
+  card.classList.add('shuffle');
+
+  setTimeout(() => {
+    const index = Math.floor(Math.random() * deck.length);
+    const next = deck.splice(index, 1)[0];
+
+    valueEl.textContent = next.value;
+    titleEl.textContent = next.title;
+    promptEl.textContent = next.text;
+
+    card.classList.remove('shuffle');
+    card.classList.add('flipped');
+  }, 350);
+}
+
+drawBtn.addEventListener('click', drawCard);
+card.addEventListener('click', () => card.classList.toggle('flipped'));
+</script>
+
 </body>
 </html>
 
