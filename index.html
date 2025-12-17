@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compleat Card Deck</title>
+  <title>Compleat Values Cards</title>
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -14,7 +17,7 @@
 
     body {
       margin: 0;
-      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: var(--teal);
       display: flex;
       justify-content: center;
@@ -27,20 +30,19 @@
     }
 
     .deck {
-      perspective: 1200px;
-      margin-bottom: 28px;
+      perspective: 1400px;
+      margin-bottom: 32px;
     }
 
-    /* CARD */
     .card {
-      width: 380px;
-      height: 560px;
+      width: 400px;
+      height: 600px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.8s ease;
       cursor: pointer;
 
-      /* Start showing BACK */
+      /* START ON BACK */
       transform: rotateY(180deg);
     }
 
@@ -53,41 +55,43 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 22px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      border-radius: 28px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
       box-sizing: border-box;
     }
 
     /* FRONT */
     .card-front {
       background: var(--white);
-      padding: 48px 36px;
+      padding: 56px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     #value {
-      font-size: 64px;
+      font-size: 72px;
       font-weight: 800;
       color: var(--teal);
-      margin: 40px 0 24px;
+      margin: 32px 0 20px;
       text-align: center;
     }
 
     #title {
-      font-size: 28px;
+      font-size: 30px;
+      font-weight: 700;
       color: var(--pink);
       margin-bottom: 48px;
       text-align: center;
     }
 
     #prompt {
-      font-size: 22px;
+      font-size: 24px;
+      font-weight: 500;
       line-height: 1.5;
       color: var(--teal);
       text-align: center;
-      max-width: 300px;
+      max-width: 320px;
     }
 
     /* BACK */
@@ -109,9 +113,10 @@
       background: var(--pink);
       border: none;
       color: white;
-      padding: 16px 36px;
+      padding: 18px 40px;
       font-size: 20px;
-      border-radius: 40px;
+      font-weight: 700;
+      border-radius: 50px;
       cursor: pointer;
     }
 
@@ -126,11 +131,11 @@
     <div class="deck">
       <div class="card" id="card">
         <div class="card-face card-front">
-          <h2 id="value">Quality</h2>
-          <h3 id="title">Quality Hero</h3>
-          <p id="prompt">
+          <div id="value">Quality</div>
+          <div id="title">Quality Hero</div>
+          <div id="prompt">
             Give a shout-out to someone who consistently delivers high-quality work.
-          </p>
+          </div>
         </div>
 
         <div class="card-face card-back">
@@ -147,34 +152,48 @@
     const drawBtn = document.getElementById('drawBtn');
     const valueEl = document.getElementById('value');
     const titleEl = document.getElementById('title');
-    const textEl = document.getElementById('prompt');
+    const promptEl = document.getElementById('prompt');
 
-    const deck = [
+    const fullDeck = [
+      // QUALITY
       { value: 'Quality', title: 'Quality Hero', text: 'Give a shout-out to someone who consistently delivers high-quality work.' },
-      { value: 'Integrity', title: 'True North Moment', text: 'Share a time you chose to do the right thing when it was hard.' },
+      { value: 'Quality', title: 'Quality Check-in', text: 'What does quality mean in your role?' },
+      { value: 'Quality', title: 'Gold Standard', text: 'Define three non-negotiables of quality in your work.' },
+
+      // INTEGRITY
+      { value: 'Integrity', title: 'True North', text: 'Share a time you chose to do the right thing when it was hard.' },
+      { value: 'Integrity', title: 'Speak Up', text: 'When did you last give honest feedback despite discomfort?' },
+
+      // PACE
       { value: 'Pace', title: 'Momentum Maker', text: 'What is slowing you or your team down?' },
-      { value: 'Customer-first', title: 'Customer Lens', text: 'What would change if a customer helped make this decision?' },
+      { value: 'Pace', title: 'Quick Win', text: 'What task could you finish today?' },
+
+      // CUSTOMER FIRST
+      { value: 'Customer-first', title: 'Customer Lens', text: 'What would change if a customer helped decide?' },
+
+      // COURAGE
       { value: 'Courage', title: 'Brave Move', text: 'Share a bold decision that helped the business.' },
+
+      // ONE COMPLEAT
       { value: 'One Compleat', title: 'One Team', text: 'How can you better support someone outside your team?' }
     ];
 
     function drawCard() {
-      const next = deck[Math.floor(Math.random() * deck.length)];
+      const next = fullDeck[Math.floor(Math.random() * fullDeck.length)];
 
       valueEl.textContent = next.value;
       titleEl.textContent = next.title;
-      textEl.textContent = next.text;
+      promptEl.textContent = next.text;
 
-      /* Always show FRONT when drawing */
       card.classList.add('flipped');
     }
 
     drawBtn.addEventListener('click', drawCard);
 
-    /* Manual flip */
     card.addEventListener('click', () => {
       card.classList.toggle('flipped');
     });
   </script>
 </body>
 </html>
+
